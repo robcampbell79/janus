@@ -1,3 +1,49 @@
 body {
     background-color: turquoise;
 }
+
+@keyframes timefill { 
+    0% {width: 0%; background-position: 50%;} 
+    100% {width: 100%; background-position: 90%;} 
+} 
+ 
+#rect1 { 
+    position: absolute; 
+    height: 50px; 
+    width: 400px; 
+    top: 100px; 
+    left: 50px; 
+    border: 1px solid black; 
+} 
+ 
+#passage { 
+    position: absolute; 
+    /* background-color:tomato; */ 
+    background-image: linear-gradient(to right, lime 0%, yellow 50%, tomato 100%); 
+    background-size: 200%; 
+    left: 0px; 
+    bottom: 0px; 
+    height: 100%; 
+    width: 0%; 
+    animation: timefill linear var(--duration) forwards; 
+} 
+ 
+#rect2 { 
+    position: absolute; 
+    height: 50px; 
+    width: 400px; 
+    top: 300px; 
+    left: 50px; 
+    border: 1px solid black; 
+    background-image: linear-gradient(left, transparent 0%, lime 1%, yellow 49%, tomato 50%); 
+    animation: boxfill 10s forwards; 
+} 
+ 
+@keyframes boxfill { 
+    0% { 
+        transform: translateX(0%); 
+    } 
+    100% { 
+        transform: translateX(25%); 
+    } 
+} 
