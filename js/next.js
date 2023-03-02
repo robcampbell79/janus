@@ -5,14 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     var pass = document.querySelector('#passage'); 
     var timer = document.querySelector('#timer');
 
-    //var num = 0;
-
-    for (i = 0; i < 8; i++) {
-        var div = document.createElement("div");
-        div.id = "tick";
-        rect1.appendChild(div);
-    }
-
     const TIME_LIMIT = 60;
     let timePassed = 0;
     let timeLeft = TIME_LIMIT;
