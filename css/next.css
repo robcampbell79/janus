@@ -5,16 +5,21 @@ body {
 @keyframes timefill { 
     0% {width: 0%; background-position: 0%;}
     50% {width: 50%; background-position: 50%;} 
-    100% {width: 100%; background-position: 90%;} 
+    100% {width: 100%; background-position: 100%;} 
 }
 
-@keyframes mover {
+/* @keyframes mover {
     from {
-        transform: translateX(0px);
+        transform: translateX(0%);
     }
     to {
-        transform: translateX(1200px);
+        transform: translateX(100%);
     }
+} */
+@keyframes mover {
+    0% {transform: translateX(0%);}
+    50% {transform: translateX(50%);} 
+    100% {transform: translateX(100%);}
 }
 
 #rect1 { 
@@ -22,7 +27,7 @@ body {
     height: 50px; 
     width: 1220px; 
     top: 100px; 
-    left: 50px; 
+    left: 200px; 
     border: 1px solid black; 
 } 
  
@@ -39,52 +44,10 @@ body {
 
 #timer {
     position: absolute;
-    top: 200px;
-    left: 50px;
+    width: 1220px;
+    top: 25%;
     animation: mover linear var(--duration) forwards;
-}
-
-#rect1 #tick:nth-of-type(2):after {
-    position: absolute;
-    top: 25%; 
-    left: 2px;
-    content: "0";
-}
-#rect1 #tick:nth-of-type(3):after {
-    position: absolute;
-    top: 25%; 
-    left: 200px;
-    content: "10";
-}
-#rect1 #tick:nth-of-type(4):after {
-    position: absolute;
-    top: 25%;
-    left: 400px;
-    content: "20";
-}
-#rect1 #tick:nth-of-type(5):after {
-    position: absolute;
-    top: 25%;
-    left: 600px;
-    content: "30";
-}
-#rect1 #tick:nth-of-type(6):after {
-    position: absolute;
-    top: 25%;
-    left: 800px;
-    content: "40";
-}
-#rect1 #tick:nth-of-type(7):after {
-    position: absolute;
-    top: 25%;
-    left: 1000px;
-    content: "50";
-}
-#rect1 #tick:nth-of-type(8):after {
-    position: absolute;
-    top: 25%;
-    left: 1200px;
-    content: "60";
+    animation-delay: 1.5s;
 }
  
 #rect2 { 
