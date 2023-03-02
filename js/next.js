@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
  
     btn.addEventListener('click', () => { 
         console.log('Clicked the btn on next'); 
-        pass.style.setProperty("--duration", 20 + "s"); 
+        pass.style.setProperty("--duration", 15 + "s"); 
         rect2.style.setProperty("--duration", 20 + "s"); 
         //rect2.style.backgroundPosition = '200% left'; 
     }) 
