@@ -1,3 +1,55 @@
 body {
     background-color: turquoise;
 }
+
+@keyframes timefill { 
+    0% {width: 0%; background-position: 0%;}
+    50% {width: 50%; background-position: 50%;} 
+    100% {width: 100%; background-position: 90%;} 
+} 
+ 
+#rect1 { 
+    position: absolute; 
+    height: 50px; 
+    width: 900px; 
+    top: 100px; 
+    left: 50px; 
+    border: 1px solid black; 
+} 
+ 
+#passage { 
+    position: absolute; 
+    background-image: linear-gradient(to right, #00cc99 50%, #ffcc00 80%, #ff3399 100%); 
+    background-size: 200%; 
+    left: 0px; 
+    bottom: 0px; 
+    height: 100%; 
+    width: 0%; 
+    animation: timefill linear var(--duration) forwards; 
+} 
+ 
+#rect2 { 
+    position: absolute; 
+    height: 50px; 
+    width: 900px; 
+    top: 300px; 
+    left: 50px; 
+    border: 1px solid black; 
+} 
+
+#passage2 { 
+    position: absolute; 
+    /* background-color:tomato; */ 
+    background-size: 200%; 
+    left: 0px; 
+    bottom: 0px; 
+    height: 100%; 
+    width: 0%; 
+    animation: timefill linear var(--duration) forwards, colors var(--duration) forwards; 
+} 
+ 
+@keyframes colors { 
+    0% {background-color: #00cc99;} 
+    50% {background-color: #ffcc00;}
+    100% {background-color: #ff3399;} 
+} 
