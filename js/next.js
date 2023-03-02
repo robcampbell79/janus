@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     var pass = document.querySelector('#passage'); 
     var timer = document.querySelector('#timer');
 
+    btn.innerHTML = 'Start Timer';
+
     for (i = 0; i < 8; i++) {
         var div = document.createElement("div");
         div.id = "tick";
@@ -23,9 +25,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btn.addEventListener('click', () => { 
         console.log('Clicked the btn on next'); 
-        pass.style.setProperty("--duration", 60 + "s"); 
-        timer.style.setProperty("--duration", 60 + "s");
-        startTimer();
+        if(btn.innerHTML == 'Start Timer') {
+            console.log(btn.innerHTML);
+            btn.innerHTML = 'Reset Timer';
+            pass.style.setProperty("--duration", 60 + "s"); 
+            timer.style.setProperty("--duration", 60 + "s");
+            pass.style.animation = 'timefill linear var(--duration) forwards';
+            timer.style.animation = 'mover linear var(--duration) forwards';
+            startTimer();
+        }
+        else if(btn.innerHTML == 'Reset Timer') {
+            console.log(btn.innerHTML);
+            pass.style.animation = 'none';
+            timer.style.animation = 'none';
+            timeUp(timerInterval);
+            stopTimer();
+            btn.innerHTML = 'Start Timer';
+        }
+        else {
+            console.log('idk');
+        }
+        
     }) 
 
     function startTimer() {
@@ -37,6 +57,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 timeUp(timerInterval)
             }
         }, 1000);
+    }
+
+    function stopTimer() {
+        timeLeft = TIME_LIMIT;
+        timePassed = 0;
+        span.innerHTML = formatTime(timeLeft);
     }
 })
 
