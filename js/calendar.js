@@ -13,6 +13,8 @@ class JanusCalendar extends HTMLElement {
         let calendar_grid = document.createElement('div');
         this.shadow.appendChild(calendar_grid);
         calendar_grid.className = "calendar_grid";
+        calendar_grid.style.height = screen.height;
+        calendar_grid.style.width = screen.width;
 
         let monthEl = document.createElement('div');
         monthEl.className = "month";
@@ -78,12 +80,6 @@ class JanusCalendar extends HTMLElement {
         dateEl.className = "date";
         calendar_grid.appendChild(dateEl);
 
-        // let datepicker = document.createElement('input');
-        // datepicker.className = "datepicker";
-        // datepicker.setAttribute('type', 'text');
-        // datepicker.setAttribute('readonly', 'true');
-        // this.shadow.appendChild(datepicker);
-
         const linkElem = document.createElement('link');
         linkElem.setAttribute('rel', 'stylesheet');
         linkElem.setAttribute('href', 'css/calendar.css');
@@ -136,7 +132,7 @@ class JanusCalendar extends HTMLElement {
 
             calendarArr = [];
 
-            calendarArr = createCalendar(year, month, day, minDate, dateEl, current, datepicker, calendar_grid);
+            calendarArr = createCalendar(year, month, day, minDate, dateEl, current, calendar_grid);
 
             calendar_grid.style.display = 'block';
         });
@@ -157,7 +153,7 @@ class JanusCalendar extends HTMLElement {
                 month = month - 1;
             }
 
-            calendarArr = createCalendar(year, month, day, minDate, dateEl, current, datepicker, calendar_grid);
+            calendarArr = createCalendar(year, month, day, minDate, dateEl, current, calendar_grid);
 
         });
 
@@ -174,9 +170,9 @@ class JanusCalendar extends HTMLElement {
 
             if (year > date.getFullYear()) {
                 minDate = [];
-                calendarArr = createCalendar(year, month, day, minDate, dateEl, current, datepicker, calendar_grid);
+                calendarArr = createCalendar(year, month, day, minDate, dateEl, current, calendar_grid);
             } else {
-                calendarArr = createCalendar(year, month, day, minDate, dateEl, current, datepicker, calendar_grid);
+                calendarArr = createCalendar(year, month, day, minDate, dateEl, current, calendar_grid);
             }
 
 
@@ -198,7 +194,7 @@ class JanusCalendar extends HTMLElement {
                 month = month + 1;
             }
 
-            calendarArr = createCalendar(year, month, day, minDate, dateEl, current, datepicker, calendar_grid);
+            calendarArr = createCalendar(year, month, day, minDate, dateEl, current, calendar_grid);
 
         });
 
@@ -215,9 +211,9 @@ class JanusCalendar extends HTMLElement {
 
             if (year > date.getFullYear()) {
                 minDate = [];
-                calendarArr = createCalendar(year, month, day, minDate, dateEl, current, datepicker, calendar_grid);
+                calendarArr = createCalendar(year, month, day, minDate, dateEl, current, calendar_grid);
             } else {
-                calendarArr = createCalendar(year, month, day, minDate, dateEl, current, datepicker, calendar_grid);
+                calendarArr = createCalendar(year, month, day, minDate, dateEl, current, calendar_grid);
             }
 
 
@@ -332,7 +328,7 @@ function findTheFirst(y, m) {
     return result;
 }
 
-function createCalendar(year, month, day = 0, minDate = [], dateEl, current, datepicker, calendar_grid) {
+function createCalendar(year, month, day = 0, minDate = [], dateEl, current, calendar_grid) {
 
     var date = new Date();
     var dayOfMonth = [];
@@ -374,11 +370,23 @@ function createCalendar(year, month, day = 0, minDate = [], dateEl, current, dat
 
 
 
+    // for (var i = 0; i < 42; i++) {
+    //     var btn = document.createElement("button");
+    //     btn.className = 'btn' + i;
+    //     btn.type = 'button'
+    //     dayOfMonth.push(btn);
+    // }
+
     for (var i = 0; i < 42; i++) {
-        var btn = document.createElement("button");
-        btn.className = 'btn' + i;
-        btn.type = 'button'
-        dayOfMonth.push(btn);
+        var dayBlk = document.createElement("div");
+        dayBlk.className = 'dayBlk' + i;
+        dayBlk.style.height ='100px';
+        dayBlk.style.width = '100px';
+        dayBlk.style.borderRadius = '25%';
+        dayBlk.style.border = '1px solid black';
+        dayBlk.style.textAlign = 'center';
+        dayBlk.style.padding = '10px';
+        dayOfMonth.push(dayBlk);
     }
 
     for (var j = 0; j < firstDay; j++) {
@@ -468,14 +476,6 @@ function createCalendar(year, month, day = 0, minDate = [], dateEl, current, dat
     }
 
     var buttons = dayOfMonth;
-
-    // buttons.forEach(i => {
-    //     i.addEventListener('click', () => {
-    //         datepicker.value = i.value;
-    //         calendar_grid.style.display = 'none';
-    //         datepicker.blur();
-    //     });
-    // })
 
     current.innerHTML = months[month] + ' ' + year;
 
