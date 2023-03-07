@@ -1,0 +1,125 @@
+.janusClock {
+    position: absolute;
+    height: 70px;
+    width: 535px;
+    border: 1px solid black;
+    left: 500px;
+    top: 500px;
+    background-color: #cc0099;
+}
+
+.janusClock #mnTick0 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+.janusClock #mnTick1 {
+    position: absolute;
+    top: 0px;
+    left: 44px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+.janusClock #mnTick2 {
+    position: absolute;
+    top: 0px;
+    left: 88px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+.janusClock #mnTick3 {
+    position: absolute;
+    top: 0px;
+    left: 132px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+.janusClock #mnTick4 {
+    position: absolute;
+    top: 0px;
+    left: 176px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+.janusClock #mnTick5 {
+    position: absolute;
+    top: 0px;
+    left: 220px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+.janusClock #mnTick6 {
+    position: absolute;
+    top: 0px;
+    left: 264px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+.janusClock #mnTick7 {
+    position: absolute;
+    top: 0px;
+    left: 308px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+.janusClock #mnTick8 {
+    position: absolute;
+    top: 0px;
+    left: 352px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+.janusClock #mnTick9 {
+    position: absolute;
+    top: 0px;
+    left: 396px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+.janusClock #mnTick10 {
+    position: absolute;
+    top: 0px;
+    left: 440px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+.janusClock #mnTick11 {
+    position: absolute;
+    top: 0px;
+    left: 484px;
+    width: 3px;
+    height: 40px;
+    background-color: black;
+}
+
+#scTick {
+
+}
+
+#ampm {
+
+}

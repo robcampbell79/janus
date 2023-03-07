@@ -1,0 +1,86 @@
+.calendar_grid {
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    display: none;
+    background-color: white;
+}
+
+.days_of_week {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(7, minmax(30px, 1fr));
+    grid-template-rows: 25px;
+    grid-auto-rows: 30px;
+    text-align: center;
+    /* overflow: auto; */
+    background-color: white;
+}
+
+.date {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-auto-rows: 30px;
+    grid-auto-flow: row;
+}
+
+.month {
+    border-left: 2px solid blue;
+    border-right: 2px solid blue;
+    border-top: 2px solid blue;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+}
+
+.days_of_week {
+    border-left: 2px solid blue;
+    border-right: 2px solid blue;
+    border-top: 2px solid blue;
+}
+
+.date {
+    border-left: 2px solid blue;
+    border-right: 2px solid blue;
+    border-top: 2px solid blue;
+    border-bottom: 2px solid blue;
+    background-color: white;
+}
+
+.prev {
+    /* float: left; */
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+
+.prevYear {
+    /* float: left; */
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+
+.next {
+    /* float: right; */
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+
+.nextYear {
+    /* float: right; */
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+
+.show_date {
+    /* position: absolute;
+    top: 350px;
+    left: 550px; */
+}
