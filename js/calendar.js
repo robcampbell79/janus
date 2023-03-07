@@ -16,6 +16,10 @@ class JanusCalendar extends HTMLElement {
         calendar_grid.style.height = screen.height;
         calendar_grid.style.width = screen.width;
 
+        let upperPanel = document.createElement('div');
+        upperPanel.className = 'upperPanel';
+        calendar_grid.appendChild(upperPanel);
+
         let monthEl = document.createElement('div');
         monthEl.className = "month";
         calendar_grid.appendChild(monthEl);
@@ -46,39 +50,53 @@ class JanusCalendar extends HTMLElement {
 
         let daysOfWeek = document.createElement('div');
         daysOfWeek.className = "days_of_week";
-        calendar_grid.appendChild(daysOfWeek);
+        upperPanel.appendChild(daysOfWeek);
 
         let su = document.createElement('div');
         su.innerHTML = 'Su';
+        su.style.color = '#fff';
+        su.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(su);
 
         let mo = document.createElement('div');
         mo.innerHTML = 'Mo';
+        mo.style.color = '#fff';
+        mo.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(mo);
 
         let tu = document.createElement('div');
         tu.innerHTML = 'Tu';
+        tu.style.color = '#fff';
+        tu.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(tu);
 
         let we = document.createElement('div');
         we.innerHTML = 'We';
+        we.style.color = '#fff';
+        we.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(we);
 
         let th = document.createElement('div');
         th.innerHTML = 'Th';
+        th.style.color = '#fff';
+        th.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(th);
 
         let fr = document.createElement('div');
         fr.innerHTML = 'Fr';
+        fr.style.color = '#fff';
+        fr.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(fr);
 
         let sa = document.createElement('div');
         sa.innerHTML = 'Sa';
+        sa.style.color = '#fff';
+        sa.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(sa);
 
         let dateEl = document.createElement('div');
         dateEl.className = "date";
-        calendar_grid.appendChild(dateEl);
+        upperPanel.appendChild(dateEl);
 
         const linkElem = document.createElement('link');
         linkElem.setAttribute('rel', 'stylesheet');
@@ -380,12 +398,14 @@ function createCalendar(year, month, day = 0, minDate = [], dateEl, current, cal
     for (var i = 0; i < 42; i++) {
         var dayBlk = document.createElement("div");
         dayBlk.className = 'dayBlk' + i;
-        dayBlk.style.height ='100px';
-        dayBlk.style.width = '100px';
-        dayBlk.style.borderRadius = '25%';
-        dayBlk.style.border = '1px solid black';
-        dayBlk.style.textAlign = 'center';
+        // dayBlk.style.height ='50px';
+        // dayBlk.style.width = '50px';
+        // dayBlk.style.borderRadius = '25%';
+        // dayBlk.style.border = '1px solid black';
+        dayBlk.style.textAlign = 'left';
         dayBlk.style.padding = '10px';
+        dayBlk.style.color = '#fff';
+        dayBlk.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         dayOfMonth.push(dayBlk);
     }
 
