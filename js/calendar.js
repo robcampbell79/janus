@@ -5,6 +5,7 @@ class JanusCalendar extends HTMLElement {
     }
 
     connectedCallback() {
+        console.log('height: '+screen.height+ ' width: '+screen.width);
         let calendar = document.createElement('div');
         calendar.className = "janusCal";
         this.shadow.appendChild(calendar)
@@ -13,11 +14,13 @@ class JanusCalendar extends HTMLElement {
         let calendar_grid = document.createElement('div');
         this.shadow.appendChild(calendar_grid);
         calendar_grid.className = "calendar_grid";
-        calendar_grid.style.height = screen.height;
-        calendar_grid.style.width = screen.width;
+        // calendar_grid.style.height = screen.height;
+        // calendar_grid.style.width = screen.width;
+        calendar_grid.style.left = screen.width - 980;
 
         let upperPanel = document.createElement('div');
         upperPanel.className = 'upperPanel';
+        upperPanel.style.left = screen.width-1000;
         calendar_grid.appendChild(upperPanel);
 
         let monthEl = document.createElement('div');
@@ -53,45 +56,38 @@ class JanusCalendar extends HTMLElement {
         upperPanel.appendChild(daysOfWeek);
 
         let su = document.createElement('div');
+        su.id = 'day';
         su.innerHTML = 'Su';
-        su.style.color = '#fff';
-        su.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(su);
 
         let mo = document.createElement('div');
+        mo.id = 'day';
         mo.innerHTML = 'Mo';
-        mo.style.color = '#fff';
-        mo.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(mo);
 
         let tu = document.createElement('div');
+        tu.id = 'day';
         tu.innerHTML = 'Tu';
-        tu.style.color = '#fff';
-        tu.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(tu);
 
         let we = document.createElement('div');
+        we.id = 'day';
         we.innerHTML = 'We';
-        we.style.color = '#fff';
-        we.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(we);
 
         let th = document.createElement('div');
+        th.id = 'day';
         th.innerHTML = 'Th';
-        th.style.color = '#fff';
-        th.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(th);
 
         let fr = document.createElement('div');
+        fr.id = 'day';
         fr.innerHTML = 'Fr';
-        fr.style.color = '#fff';
-        fr.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(fr);
 
         let sa = document.createElement('div');
+        sa.id = 'day';
         sa.innerHTML = 'Sa';
-        sa.style.color = '#fff';
-        sa.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
         daysOfWeek.appendChild(sa);
 
         let dateEl = document.createElement('div');
@@ -117,43 +113,76 @@ class JanusCalendar extends HTMLElement {
         var minDateTypeVal;
         var minDateNumber;
         var minDateNum = 0;
-        let btnCal = document.querySelector('#btnCal');
+        // let btnCal = document.querySelector('#btnCal');
 
-        btnCal.addEventListener('focus', () => {
+        if (daysAttr == null || daysAttr == 'none') {
+            minDateNumber = '-1';
+        }
+        else if (daysAttr == 'current') {
+            minDateNumber = '0';
+        }
+        else {
+            minDateNumber = daysAttr;
+        }
 
-            if (daysAttr == null || daysAttr == 'none') {
-                minDateNumber = '-1';
-            }
-            else if (daysAttr == 'current') {
-                minDateNumber = '0';
-            }
-            else {
-                minDateNumber = daysAttr;
-            }
+        minDateTypeVal = 'days';
+        //minDateNumber = '0';
 
-            minDateTypeVal = 'days';
-            //minDateNumber = '0';
+        minDateNum = parseInt(minDateNumber);
+        minDate = setMinDate(minDateTypeVal, minDateNum);
 
-            minDateNum = parseInt(minDateNumber);
-            minDate = setMinDate(minDateTypeVal, minDateNum);
+        minYear = minDate[0];
+        minMonth = minDate[1];
+        minDay = minDate[2];
+        year = minYear;
+        month = minMonth;
+        day = minDay;
 
-            minYear = minDate[0];
-            minMonth = minDate[1];
-            minDay = minDate[2];
-            year = minYear;
-            month = minMonth;
-            day = minDay;
+        for (var i = 0; i < calendarArr.length; i++) {
+            calendarArr[i].remove();
+        }
 
-            for (var i = 0; i < calendarArr.length; i++) {
-                calendarArr[i].remove();
-            }
+        calendarArr = [];
 
-            calendarArr = [];
+        calendarArr = createCalendar(year, month, day, minDate, dateEl, current, calendar_grid);
 
-            calendarArr = createCalendar(year, month, day, minDate, dateEl, current, calendar_grid);
+        calendar_grid.style.display = 'block';
 
-            calendar_grid.style.display = 'block';
-        });
+        // btnCal.addEventListener('focus', () => {
+
+        //     if (daysAttr == null || daysAttr == 'none') {
+        //         minDateNumber = '-1';
+        //     }
+        //     else if (daysAttr == 'current') {
+        //         minDateNumber = '0';
+        //     }
+        //     else {
+        //         minDateNumber = daysAttr;
+        //     }
+
+        //     minDateTypeVal = 'days';
+        //     //minDateNumber = '0';
+
+        //     minDateNum = parseInt(minDateNumber);
+        //     minDate = setMinDate(minDateTypeVal, minDateNum);
+
+        //     minYear = minDate[0];
+        //     minMonth = minDate[1];
+        //     minDay = minDate[2];
+        //     year = minYear;
+        //     month = minMonth;
+        //     day = minDay;
+
+        //     for (var i = 0; i < calendarArr.length; i++) {
+        //         calendarArr[i].remove();
+        //     }
+
+        //     calendarArr = [];
+
+        //     calendarArr = createCalendar(year, month, day, minDate, dateEl, current, calendar_grid);
+
+        //     calendar_grid.style.display = 'block';
+        // });
 
         prevBtn.addEventListener('click', () => {
             day = 0;
@@ -397,15 +426,22 @@ function createCalendar(year, month, day = 0, minDate = [], dateEl, current, cal
 
     for (var i = 0; i < 42; i++) {
         var dayBlk = document.createElement("div");
-        dayBlk.className = 'dayBlk' + i;
-        // dayBlk.style.height ='50px';
-        // dayBlk.style.width = '50px';
-        // dayBlk.style.borderRadius = '25%';
-        // dayBlk.style.border = '1px solid black';
+        // dayBlk.className = 'dayBlk' + i;
+        dayBlk.className = 'dayBlk';
+        dayBlk.style.height ='55px';
+        dayBlk.style.width = '112px';
+        dayBlk.style.borderRadius = '25%';
         dayBlk.style.textAlign = 'left';
         dayBlk.style.padding = '10px';
-        dayBlk.style.color = '#fff';
-        dayBlk.style.textShadow = '0 0 7px #fff,0 0 10px #fff,0 0 21px #fff,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
+        dayBlk.style.color = '#66ffc2';
+        dayBlk.style.textShadow = '0 0 7px #66ffc2,0 0 10px #66ffc2,0 0 21px #66ffc2,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa';
+        //glasspanels
+        dayBlk.style.background = 'rgba(255, 255, 255, 0.15)';
+        dayBlk.style.borderRadius = '5px';
+        dayBlk.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
+        dayBlk.style.backdropFilter = 'saturate(50%) blur(5px)';
+        dayBlk.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+        //glasspanels
         dayOfMonth.push(dayBlk);
     }
 
@@ -413,6 +449,8 @@ function createCalendar(year, month, day = 0, minDate = [], dateEl, current, cal
         dayOfMonth[j].value = prevDaysFill * -1;
         dayOfMonth[j].disabled = true;
         dayOfMonth[j].innerHTML = prevDaysFill;
+        dayOfMonth[j].style.color = '#4d4d4d';
+        dayOfMonth[j].style.textShadow = '';
         prevDaysFill++;
     }
 
@@ -461,30 +499,35 @@ function createCalendar(year, month, day = 0, minDate = [], dateEl, current, cal
         dayOfMonth[h].value = -1;
         dayOfMonth[h].disabled = true;
         dayOfMonth[h].innerHTML = fDays;
+        dayOfMonth[h].style.color = '#4d4d4d';
+        dayOfMonth[h].style.textShadow = '';
         fDays++;
     }
 
+    cssNeon = 'text-align: left; padding: 10px; color: #33ffad; text-shadow: 0 0 7px #33ffad,0 0 10px #33ffad,0 0 21px #33ffad,0 0 42px #0fa,0 0 82px #0fa,0 0 92px #0fa,0 0 102px #0fa,0 0 151px #0fa;';
+    cssGlass = 'background: rgba(255, 255, 255, 0.15); border-radius: 5px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); backdrop-filter: saturate(50%) blur(5px); border: 1px solid rgba(255, 255, 255, 0.3);';
+
     switch (firstOfMonth) {
         case 0:
-            cssGridProp = 'grid-area: 1/1/2/2;';
+            cssGridProp = 'grid-area: 1/1/2/2;'+cssNeon+cssGlass;
             break;
         case 1:
-            cssGridProp = 'grid-area: 1/2/2/3;';
+            cssGridProp = 'grid-area: 1/2/2/3;'+cssNeon+cssGlass;
             break;
         case 2:
-            cssGridProp = 'grid-area: 1/3/2/4;';
+            cssGridProp = 'grid-area: 1/3/2/4;'+cssNeon+cssGlass;
             break;
         case 3:
-            cssGridProp = 'grid-area: 1/4/2/5;';
+            cssGridProp = 'grid-area: 1/4/2/5;'+cssNeon+cssGlass;
             break;
         case 4:
-            cssGridProp = 'grid-area: 1/5/2/6;';
+            cssGridProp = 'grid-area: 1/5/2/6;'+cssNeon+cssGlass;
             break;
         case 5:
-            cssGridProp = 'grid-area: 1/6/2/7;';
+            cssGridProp = 'grid-area: 1/6/2/7;'+cssNeon+cssGlass;
             break;
         case 6:
-            cssGridProp = 'grid-area: 1/7/2/8;';
+            cssGridProp = 'grid-area: 1/7/2/8;'+cssNeon+cssGlass;
             break;
     }
 

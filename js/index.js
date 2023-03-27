@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let mnStr = '';
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     let day = document.querySelector('#dayLbl');
-    day.innerHTML = dt.getDate();
+    let btnCal = document.querySelector('#btnCal');
+    let landing = document.querySelector('#landingPage');
+    let planner = document.querySelector('.planner');
+    //day.innerHTML = dt.getDate();
 
     switch(month) {
         case 0:
@@ -54,5 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     date.innerHTML = mnStr;
+
+    btnCal.addEventListener('click', () => {
+        landing.style.display = 'none';
+        //planner.style.display = 'block';
+    })
 
 })

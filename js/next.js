@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log(screen.width+" / "+screen.height); 
     var btn = document.querySelector('#btn'); 
+    let psBtn = document.querySelector('#psBtn');
     var rect1 = document.querySelector('#rect1'); 
     var pass = document.querySelector('#passage'); 
     var timer = document.querySelector('#timer');
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let timePassed = 0;
     let timeLeft = TIME_LIMIT;
     let timerInterval = null;
+    let paused = true;
 
     var span = document.createElement("span");
     span.id = "sTimer";
@@ -29,18 +31,18 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(btn.innerHTML);
             btn.innerHTML = 'Reset Timer';
             pass.style.setProperty("--duration", 60 + "s"); 
-            timer.style.setProperty("--duration", 60 + "s");
             pass.style.animation = 'timefill linear var(--duration) forwards';
-            timer.style.animation = 'mover linear var(--duration) forwards';
+            paused = false;
             startTimer();
         }
         else if(btn.innerHTML == 'Reset Timer') {
             console.log(btn.innerHTML);
             pass.style.animation = 'none';
-            timer.style.animation = 'none';
             timeUp(timerInterval);
+            paused = true;
             stopTimer();
             btn.innerHTML = 'Start Timer';
+            psBtn.innerHTML = 'Pause Timer';
         }
         else {
             console.log('idk');
@@ -48,15 +50,39 @@ document.addEventListener("DOMContentLoaded", () => {
         
     }) 
 
+    psBtn.addEventListener('click', () => {
+        console.log('pause');
+        if(psBtn.innerHTML == 'Pause Timer') {
+            psBtn.innerHTML = 'Resume Timer';
+            pass.style.animationPlayState = 'paused';
+            console.log('passed time: ' + timePassed);
+            pauseTimer(true);
+        } 
+        else if(psBtn.innerHTML == 'Resume Timer') {
+            psBtn.innerHTML = 'Pause Timer';
+            pass.style.animationPlayState = 'running';
+            pauseTimer(false);
+        }
+        else {
+            console.log('idk also');
+        }
+    })
+
     function startTimer() {
         timerInterval = setInterval(() => {
-            timePassed = timePassed += 1;
-            timeLeft = TIME_LIMIT - timePassed;
-            span.innerHTML = formatTime(timeLeft);
+            if(paused == false) {
+                timePassed = timePassed += 1;
+                timeLeft = TIME_LIMIT - timePassed;
+                span.innerHTML = formatTime(timeLeft);
+            }
             if(timeLeft == 0) {
                 timeUp(timerInterval)
             }
         }, 1000);
+    }
+
+    function pauseTimer(toPause) {
+        paused = toPause;
     }
 
     function stopTimer() {

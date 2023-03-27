@@ -36,3 +36,13 @@ body {
     font-size: medium;
     color: whitesmoke;
 }
+
+/* .planner {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+} */

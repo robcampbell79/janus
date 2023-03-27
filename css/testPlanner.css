@@ -1,0 +1,24 @@
+#grid1 {
+    position: fixed;
+    left: 50px;
+    width: 100%;
+    height: 300px;
+    z-index: 1;
+}
+
+#grid2 {
+    /* position: fixed; */
+    position: absolute;
+    top: 300px;
+    left: 8px;
+    width: 100%;
+    height: 5000px;
+}
+
+.planner {
+    z-index: 1;
+}
+
+#sbmtBtn {
+    z-index: 3;
+}

@@ -1,18 +1,70 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/testPlanner.css">
         <script src="js/index.js"></script>
         <script src="js/clock.js"></script>
         <script src="js/calendar.js"></script>
+        <script src="js/testPlanner.js"></script>
     </head>
     <body>
-        <h1>Welcome to Janus, the app that helps visualize time. Together, we can defeat time blindness.</h1>
-        <!-- <janus-clock></janus-clock> -->
-        <button type="button" id="btn">Calendar</button>
-        <button type="button" id="btnCal">
-            <label id="dateLbl"></label>
-            <p id="dayLbl"></p>
-        </button>
-        <janus-calendar id="cal_grid"></janus-calendar>
+        <div id="landingPage">
+            <h1>Welcome to Janus, the app that helps visualize time. Together, we can defeat time blindness.</h1>
+            <!-- <janus-clock></janus-clock> -->
+            <button type="button" id="btn">Calendar</button>
+            <!-- <button type="button" id="btnCal">
+                <label id="dateLbl"></label>
+                <p id="dayLbl"></p>
+            </button> -->
+        </div>
+        <div class="planner">
+            <svg id="grid1">
+                <g stroke="black">
+                    <line x1="500" y1="0" x2="500" y2="220" stroke-width=".7"/>
+                    <text x="550" y="15" fill="black" stroke-opacity="0">SU</text>
+                    <line x1="700" y1="0" x2="700" y2="220" stroke-width=".7"/>
+                    <text x="750" y="15" fill="black" stroke-opacity="0">MO</text>
+                    <line x1="900" y1="0" x2="900" y2="220" stroke-width=".7"/>
+                    <text x="950" y="15" fill="black" stroke-opacity="0">TU</text>
+                    <line x1="1100" y1="0" x2="1100" y2="220" stroke-width=".7"/>
+                    <text x="1150" y="15" fill="black" stroke-opacity="0">WE</text>
+                    <line x1="1300" y1="0" x2="1300" y2="220" stroke-width=".7"/>
+                    <text x="1350" y="15" fill="black" stroke-opacity="0">TH</text>
+                    <line x1="1500" y1="0" x2="1500" y2="220" stroke-width=".7"/>
+                    <text x="1550" y="15" fill="black" stroke-opacity="0">FR</text>
+                    <line x1="1700" y1="0" x2="1700" y2="220" stroke-width=".7"/>
+                    <text x="1750" y="15" fill="black" stroke-opacity="0">SA</text>
+                    <line x1="500" y1="200" x2="100%" y2="200" stroke-width=".7"/>
+                </g>
+            </svg>
+            <svg id="grid2">
+                <g id="g2" stroke="black">
+                    <line x1="500" y1="7" x2="500" y2="5000" stroke-width=".7"/>
+                    <line x1="700" y1="7" x2="700" y2="5000" stroke-width=".7"/>
+                    <line x1="900" y1="7" x2="900" y2="5000" stroke-width=".7"/>
+                    <line x1="1100" y1="7" x2="1100" y2="5000" stroke-width=".7"/>
+                    <line x1="1300" y1="7" x2="1300" y2="5000" stroke-width=".7"/>
+                    <line x1="1500" y1="7" x2="1500" y2="5000" stroke-width=".7"/>
+                    <line x1="1700" y1="7" x2="1700" y2="5000" stroke-width=".7"/>
+                    <line id="theLine" x1="490" y1="100" x2="100%" y2="100" stroke-width=".7"/>
+                    <text x="445" y="105" stroke-opacity="0" fill="#333333">1 AM</text>
+                    <line id="theLine2" x1="490" y1="200" x2="100%" y2="200" stroke-width=".7"/>
+                    <text x="445" y="205" stroke-opacity="0" fill="#333333">2 AM</text>
+                </g>
+            </svg>
+        </div>
+        <div>
+            <label>Date: </label><input id="date" type="text">
+            <br>
+            <label>Start Time: </label><input id="stime" type="text">
+            <br>
+            <label>End Time: </label><input id="etime" type="text">
+            <br>
+            <label>Title: </label><input id="title" type="text">
+            <br>
+            <label>Desc: </label><input id="desc" type="text">
+        </div>
+        <br><br>
+        <button id="sbmtBtn">Submit</button>
     </body>
 </html>
